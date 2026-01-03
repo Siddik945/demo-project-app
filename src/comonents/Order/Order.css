@@ -1,0 +1,12 @@
+.review-container{
+    /* border-right: 1px solid #ccc; */
+    display: flex;
+}
+.review-item {
+    width: 70%;
+    border-right: 1px solid #ccc;
+}
+.order-summary {
+    margin: 10px;
+    padding-left: 20px;
+}   
