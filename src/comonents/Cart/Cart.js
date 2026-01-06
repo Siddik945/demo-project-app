@@ -11,7 +11,7 @@ const Cart = (props) => {
   }
   // const price = cart.reduce((total, prd) => total + prd.price, 0);
   let shipping = 0;
-  if (price > 35) {
+  if (price > 350) {
     shipping = 0;
   } else if (price > 15) {
     shipping = 4.99;
