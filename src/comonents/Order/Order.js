@@ -8,15 +8,39 @@ import { removeFromDb } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import { deleteShoppingCart } from "../../utilities/fakedb";
 import image from "../../images/giphy.gif";
+import { useContext } from "react";
+import { UserContext } from "../../App";
+import { useNavigate } from "react-router-dom";
 
 const Order = () => {
   const [cart, setCart] = useState([]);
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);  
+  const [checkEmail, setCheckEmail] = useState(false);
+  const navigate = useNavigate();
 
   const [ordered, setOrdered] = useState(false);
   const handle = () => {
+    // if(!loggedInUser.email){
+    //   setCheckEmail(true);
+    //   navigate("/login");
+    //   return;
+    // }
+    // else{
+    //   navigate("/shpping");
+    //   setCheckEmail(false);
+    // }
+    navigate("/manage");
     setOrdered(true);
     setCart([]);
     deleteShoppingCart();
+    // const newUser = {...loggedInUser};
+    // if(newUser.email){
+    //   navigate("/login")
+    // }
+    // else{
+    //   setCheckEmail=false;
+    // }
+    // setLoggedInUser(newUser);
   };
   const removeProduct = (productId) => {
     const newCart = cart.filter((pd) => pd.id !== productId);
@@ -42,7 +66,7 @@ const Order = () => {
             <Review cart={pd} removeProduct={removeProduct}></Review>
           </div>
         ))}
-        {ordered && <img src={image} alt="" />}
+        
       </div>
       <div className="order-summary">
         <Cart cart={cart}>
@@ -51,6 +75,7 @@ const Order = () => {
           </button>
         </Cart>
       </div>
+
     </div>
   );
 };
